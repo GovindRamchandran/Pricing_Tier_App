@@ -11,7 +11,6 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials: { email: string; password: string; }) {
-        // 🔒 Fake login logic for demo – replace with DB call in real apps
         if (
           credentials?.email === 'admin@example.com' &&
           credentials?.password === 'password'
@@ -19,7 +18,7 @@ export const authOptions: NextAuthOptions = {
           return { id: '1', name: 'Admin User', email: 'admin@example.com' };
         }
 
-        return null; // 👎 Reject login
+        return null;
       },
     }),
   ],

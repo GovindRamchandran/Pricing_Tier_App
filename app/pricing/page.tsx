@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from 'react';
+import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { fetcher } from '@/utils/fetcher';
 import { useAuth } from '../components/AuthProvider';
@@ -81,15 +81,14 @@ export default function PricingPage() {
           </p>
         </div>
 
-        {/* ✅ Replacing Feature Panel with Swiper 3D Carousel */}
         {features.length > 0 && (
-          <div className="relative w-full max-w-3xl"> {/* 💥 Increased width */}
+          <div className="relative w-full max-w-3xl">
             <Swiper
               modules={[EffectCoverflow, Navigation]}
               effect="coverflow"
               grabCursor={true}
               centeredSlides={true}
-              slidesPerView={1.5} // Slightly wider visual
+              slidesPerView={1.5}
               loop={true}
               speed={700}
               navigation={{
@@ -103,7 +102,7 @@ export default function PricingPage() {
                 modifier: 1.5,
                 slideShadows: true,
               }}
-              className="w-full py-10" // 💥 Taller swiper
+              className="w-full py-10"
             >
               {features.map((feature: any, idx: any) => (
                 <SwiperSlide key={idx}>
@@ -113,7 +112,6 @@ export default function PricingPage() {
                 </SwiperSlide>
               ))}
 
-              {/* Navigation arrows (container stays same, icon gets smaller) */}
               <div className="swiper-button-prev custom-swiper-button">
                 <svg width="18" height="18" viewBox="0 0 24 24">
                   <path d="M15 18l-6-6 6-6" stroke="black" strokeWidth="2" fill="none" />

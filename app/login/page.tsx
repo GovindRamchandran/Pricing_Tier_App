@@ -11,7 +11,7 @@ import { auth, db } from '@/utils/firebase';
 
 export default function LoginPage() {
   const router = useRouter();
-  const [isSignup, setIsSignup] = useState(false); // 👈 Toggle between login/signup
+  const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -24,18 +24,15 @@ export default function LoginPage() {
 
     try {
       if (isSignup) {
-        // 🔐 Sign Up Flow
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // 🎯 Store default subscription tier in Firestore
         await setDoc(doc(db, 'users', user.uid), {
           email: user.email
         });
 
         router.push('/'); // Redirect after signup
       } else {
-        // 🔐 Login Flow
         await signInWithEmailAndPassword(auth, email, password);
         router.push('/');
       }
